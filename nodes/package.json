@@ -1,0 +1,17 @@
+{
+  "name": "nodes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google-cloud/speech": "^7.3.0",
+    "google-translate-api-x": "^10.7.2",
+    "openai": "^6.27.0"
+  }
+}

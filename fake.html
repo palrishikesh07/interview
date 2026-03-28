@@ -1,0 +1,55 @@
+<div
+  id="boxDiv"
+  style="
+    width: 100px;
+    height: 100px;
+    background-color: rgb(249, 249, 4);
+    color: pink;
+    border: 2px solid blue;
+  "
+>
+  Hi
+</div>
+
+<script>
+  const box = document.getElementById("boxDiv");
+  box.style.transition = "all 0.8s";
+  box.addEventListener("click", (e) => {
+    // alert("hi");
+    box.style.width = "200px";
+    box.style.height = "200px";
+  });
+
+  // window.onerror = function (message, source, lineno, colno, error) {
+  //   console.error(`Error: ${message} at ${source}:${lineno}:${colno}`);
+  //   return true; // Prevents the default browser error handling
+  // };
+  // nonExistentFunction(); // This triggers window.onerror
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          console.log(
+            "Service Worker registered with scope:",
+            registration.scope,
+          );
+        });
+    });
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      console.log("Lat:", position.coords.latitude);
+      console.log("Lng:", position.coords.longitude);
+      console.log("Accuracy (meters):", position.coords.accuracy);
+    },
+    (error) => {
+      console.error(error.message);
+    },
+    {
+      enableHighAccuracy: true,
+    },
+  );
+</script>

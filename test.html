@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Progress UI</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #f4f4f9;
+        padding: 20px;
+      }
+      .card {
+        max-width: 450px;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Progress Bar Styles */
+      .progress-track {
+        width: 100%;
+        height: 24px;
+        background: #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: #3b82f6;
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+
+      /* Typography and Buttons */
+      .data-row {
+        margin-bottom: 12px;
+        font-size: 16px;
+        color: #333;
+      }
+      .value-badge {
+        background: #f1f5f9;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #0f172a;
+        font-family: monospace;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #10b981;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #059669;
+      }
+      button:disabled {
+        background: #cbd5e1;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2 style="margin-top: 0">Array Progress Tracker</h2>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="data-row">
+        <strong>Progress:</strong>
+        <span class="value-badge" id="progressText">0%</span>
+      </div>
+      <div class="data-row">
+        <strong>Max Capacity:</strong>
+        <span class="value-badge" id="maxSizeDisplay">10</span>
+      </div>
+      <div class="data-row">
+        <strong>Next Value to Add:</strong>
+        <span class="value-badge" id="nextValDisplay">1</span>
+      </div>
+      <div class="data-row">
+        <strong>Current Array:</strong>
+        <div
+          class="value-badge"
+          style="margin-top: 8px; display: block; min-height: 24px"
+          id="arrayDisplay"
+        >
+          []
+        </div>
+      </div>
+
+      <button id="incrementBtn">Increment Array</button>
+      <button
+        id="resetBtn"
+        style="background: #ef4444; margin-top: 10px; display: none"
+      >
+        Reset Tracker
+      </button>
+    </div>
+
+    <script>
+      // 1. Initialize State Variables
+      let myArr = [];
+      let maxSize = 10;
+      let currentValue = 1;
+
+      // 2. Grab DOM Elements
+      const incrementBtn = document.getElementById("incrementBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const arrayDisplay = document.getElementById("arrayDisplay");
+      const progressFill = document.getElementById("progressFill");
+      const progressText = document.getElementById("progressText");
+      const nextValDisplay = document.getElementById("nextValDisplay");
+
+      // 3. Increment Button Logic
+      incrementBtn.addEventListener("click", () => {
+        if (myArr.length < maxSize) {
+          myArr.push(currentValue);
+          currentValue += 5; // Increment the value for the next click
+          updateUI();
+        }
+      });
+
+      // 4. Reset Button Logic
+      resetBtn.addEventListener("click", () => {
+        myArr = [];
+        currentValue = 1;
+        updateUI();
+      });
+
+      // 5. Update UI Function
+      function updateUI() {
+        // Update Text Displays
+        arrayDisplay.textContent = "[" + myArr.join(", ") + "]";
+        nextValDisplay.textContent = currentValue;
+
+        // Calculate and Update Progress
+        let percentage = (myArr.length / maxSize) * 100;
+        progressFill.style.width = percentage + "%";
+        progressText.textContent = Math.round(percentage) + "%";
+
+        // Handle Button States
+        if (myArr.length >= maxSize) {
+          incrementBtn.disabled = true;
+          incrementBtn.textContent = "Maximum Capacity Reached";
+          resetBtn.style.display = "block";
+        } else {
+          incrementBtn.disabled = false;
+          incrementBtn.textContent = "Increment Array";
+          resetBtn.style.display = "none";
+        }
+      }
+
+      // Run once on load to set initial state
+      updateUI();
+    </script>
+  </body>
+</html>
