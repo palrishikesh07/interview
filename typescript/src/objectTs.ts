@@ -106,3 +106,65 @@ type ChaiNew = {
 };
 
 type publicChai = Omit<ChaiNew, "secretIngredients">;
+
+
+
+// Primitive alias
+type UserID = number;
+
+// Object alias
+type Point = {
+    x: number;
+    y: number;
+};
+
+// Union alias
+type Status = "success" | "error";
+
+// Function alias
+type MathOperation = (x: number, y: number) => number;   
+
+interface Name{
+  name: string;
+}
+interface Age{
+  age: number;
+}
+type Person = Name & Age; // Intersection type
+
+
+interface Dog {
+  bark(): void;
+}
+
+interface Cat {
+  meow(): void;
+}
+
+function playWithPet(pet: Dog | Cat) {
+  if ('bark' in pet) {
+    // TypeScript knows 'pet' is Dog here
+    pet.bark(); 
+  } else {
+    // TypeScript knows 'pet' is Cat here
+    pet.meow();
+  }
+}   
+
+
+
+
+// Define a namespace
+namespace Geometry {
+    export class Circle {
+        constructor(public radius: number) {}
+        
+        area(): number {
+            return Math.PI * this.radius ** 2;
+        }
+    }
+}
+
+// Access members using dot notation
+const circle = new Geometry.Circle(5);
+console.log(circle.area()); // Output: 78.53981633974483   

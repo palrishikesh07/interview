@@ -91,9 +91,7 @@
     const child = document.querySelector("#c1");
     const child2 = document.querySelector("#c2");
 
-    parent.addEventListener(
-      "click",
-      () => {
+    parent.addEventListener("click",() => {
         console.log("Parent is clicked");
       },
       true
@@ -106,6 +104,7 @@
     child2.addEventListener("click", (event) => {
       console.log("Child 2 is clicked");
     });
+    
 
     // preventDefault
     // const form = document.querySelector("#myForm");

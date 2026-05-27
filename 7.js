@@ -27,3 +27,12 @@ counterModule.decrement()
 counterModule.decrement()
 counterModule.decrement()
 counterModule.decrement()
+
+const cluster = require('cluster');
+const os = require('os');
+
+if (cluster.isMaster) {
+    os.cpus().forEach(() => cluster.fork());
+} else {
+    require('./server');
+}

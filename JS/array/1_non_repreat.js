@@ -1,3 +1,5 @@
+//12-factor application principles for cloud-native development
+
 const arr1 = [2, 2, 1, 1, 4, 4, 5, 5, 10]
 
 function nonRepated(arr) {

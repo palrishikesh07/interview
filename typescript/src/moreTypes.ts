@@ -58,5 +58,91 @@ function redirectBasedOnRole(role: Role): void {
 }
 
 function neverReturn(): never {
-  while (true) {}
+  while (true) { }
 }
+
+
+// Generic Types, Repository Pattern Example
+interface BaseEntity {
+  id: string;
+}
+
+class Repository<T extends BaseEntity> {
+  private items: T[] = [];
+
+  create(item: T): T {
+    this.items.push(item);
+    return item;
+  }
+
+  findById(id: string): T | undefined {
+    return this.items.find(item => item.id === id);
+  }
+}
+
+// Usage
+interface User extends BaseEntity {
+  name: string;
+}
+
+const repo = new Repository<User>();
+
+repo.create({
+  id: "1",
+  name: "Rishi"
+});
+
+
+
+// Event Type Definition
+type UserCreatedEvent = {
+  event: "USER_CREATED";
+  payload: {
+    userId: string;
+    email: string;
+  };
+};
+
+// producer
+
+async function publishEvent(event: UserCreatedEvent) {
+  await kafkaProducer.send({
+    topic: "user-events",
+    messages: [
+      {
+        value: JSON.stringify(event)
+      }
+    ]
+  });
+}
+
+
+
+Step 1 — Metrics
+
+Check:
+CPU
+Memory
+DB connections
+Event loop lag
+
+Step 2 — Logs & Tracing
+Use:
+Datadog
+Grafana
+OpenTelemetry
+
+Step 3 — Identify Bottleneck
+Common causes:
+N+1 queries
+Sequential awaits
+Missing indexes
+External API latency
+
+Step 4 — Optimization
+Possible fixes:
+Add Redis cache
+DB indexing
+Batch queries
+Queue heavy jobs
+Horizontal scaling

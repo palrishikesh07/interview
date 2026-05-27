@@ -25,3 +25,10 @@ let g = 9007199254740991n; // BigInt
 let h = { name: "Alice" }; // Object
 console.log(typeof a, typeof b, typeof typeof c);
 
+
+
+x=5;
+x=x*2+1;
+console.log(x)
+x=x/3;
+console.log(x); // Output: 3

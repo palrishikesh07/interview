@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container img{
+    width: 20rem;
+}
+
+.container .cart{
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 1rem;
+
+}

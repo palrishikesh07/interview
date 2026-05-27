@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package food;
+
+service OrderService{
+    rpc PlaceOrder (OrderRequest) returns (OrderResponse);
+    rpc TrackDelivery (DeliveryRequest) returns (stream DeliveryLocation);
+}
+
+message OrderRequest{
+    string item = 1;
+    int32 quantity = 2;
+}
+
+message OrderResponse{
+    string status=1;
+}
+
+message DeliveryRequest{
+    string orderId = 1;
+}
+
+message DeliveryLocation{
+    double latitude = 1;
+    double longitude = 2;
+}

@@ -20,7 +20,7 @@ const Rating = () => {
           onMouseLeave={() => setHover(0)}
           key={index}
         >
-          &#9733;
+          &#9733; // this is the unicode for star symbol
         </span>
       ))}
     </div>

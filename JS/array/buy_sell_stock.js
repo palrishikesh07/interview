@@ -21,7 +21,8 @@ function findMaxProfit(arr) {
 
 console.log(findMaxProfit(prices))
 
-
+//[7, 1, 5, 3, 6, 4];
+const prices = [7, 1, 5, 3, 6, 4];
 function findMaxProfitOptimize(prices) {
     // Minimum price seen so far
     let buyPrice = prices[0];
@@ -45,5 +46,5 @@ function findMaxProfitOptimize(prices) {
 
     return profit;
 }
-
+findMaxProfitOptimize(prices)
 console.log(findMaxProfitOptimize(prices));

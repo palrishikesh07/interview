@@ -15,9 +15,7 @@ function throttleMessage(fn, delay) {
 }
 
 
-function sendMessage(query) {
-    console.log(`Sending message ${query}`);
-}
+
 
 const sendMessageWithThrottling = throttleMessage(sendMessage, 2000)
 

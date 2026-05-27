@@ -1,4 +1,6 @@
 /*
+Factory Method is a Creational Design Pattern that delegates object creation to subclasses instead of creating objects directly with new.
+
 One-line Interview Definition:
 Factory Method defines an interface for creating an object but lets subclasses decide which class to instantiate.
 

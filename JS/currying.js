@@ -27,16 +27,16 @@ const multiply = a => b => a * b;
 const double = multiply(2);
 const triple = multiply(3);
 
-console.log(double(5))
-console.log(triple(5))
+console.log(double(5)) // 10
+console.log(triple(5)) // 15
 
 // 2️⃣ Reusable Utility Functions
 const formatCurrency = currency => amount => `${currency} ${amount}`
 
 const inrFormat = formatCurrency("Inr:")
 const usdFormat = formatCurrency("$:")
-console.log(inrFormat("1000"))
-console.log(usdFormat("50"))
+console.log(inrFormat("1000")) // Inr: 1000
+console.log(usdFormat("50")) // $ 50
 
 
 // 4️⃣ Configuration-Based Functions
@@ -48,8 +48,8 @@ const logger = level => message => {
 const errorLogger = logger("ERROR");
 const infoLogger = logger("INFO");
 
-errorLogger("Something went wrong")
-infoLogger("App started")
+errorLogger("Something went wrong") // [ERROR] Something went wrong
+infoLogger("App started") // [INFO] App started
 
 
 
@@ -95,6 +95,35 @@ const sum = curry(totalSum);
 // console.log(sum(1, 2, 3));    // 6
 console.log(sum(1)(2)(3));    // 6
 // console.log(sum(1)(2, 3));    // 6
+console.log(sum(1, 2)(3));    // 6
+
+
+function sumCurring(...args) {
+  let total = args.reduce((a, b) => a + b, 0);
+
+  function next(...more) {
+    total += more.reduce((a, b) => a + b, 0);
+    return next;
+  }
+
+  next.valueOf = function () {
+    return total;
+  };
+
+  next.toString = function () {
+    return total;
+  };
+
+  return next;
+}
+
+console.log(sumCurring(1)(2)(3));        // 6
+console.log(sumCurring(1, 2)(3, 4));     // 10
+console.log(sumCurring(5)(5)(5)(5));     // 20
+
+// Works because of valueOf/toString
+console.log(sumCurring(1)(2) + 3);       // 6
+
 
 
 

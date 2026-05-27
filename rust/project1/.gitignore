@@ -1,0 +1,19 @@
+# Rust build folders
+target/
+debug/
+
+**/target/
+**/debug/
+
+# Cargo lock
+Cargo.lock
+
+# Rustfmt backups
+**/*.rs.bk
+
+# Debug symbols
+*.pdb
+
+# IDE files
+.idea/
+*.iml
