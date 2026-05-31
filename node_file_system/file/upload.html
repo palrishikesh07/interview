@@ -1,0 +1,19 @@
+<!-- upload.html -->
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>Upload Single File</h2>
+    <form action="http://localhost:3000/api/upload/single" method="POST" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Upload Multiple Files</h2>
+    <form action="http://localhost:3000/api/upload/multiple" method="POST" enctype="multipart/form-data">
+        <input type="file" name="photos" accept="image/*" multiple>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+
+</html>
