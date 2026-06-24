@@ -1,5 +1,11 @@
+// Debouncing delays a function's execution until after a specified time has elapsed since the last invocation. 
+// If called again before the delay ends, the timer resets.
+// Used for search boxes, resize handlers, window scroll — prevents excessive calls.
+
+
 // User does not enter any thing for specifed time,than only call api,
 //  other wise reset time
+
 
 
 function debouncing(fn, delay) {

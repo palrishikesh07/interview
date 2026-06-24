@@ -29,14 +29,14 @@ Array.prototype.myMap = function (cb) {
 }
 
 const arr = [1, 2, 3, 4, 5];
-arr.myMap((n) => n * n);
-
+// const myMapSolution = arr.myMap((n) => n * n);
+// console.log("myMapSolution:  ",myMapSolution)
 
 Array.prototype.myMap = function (cd) {
     let temp1 = [];
     let length = this.length;
     for (let i = 0; i < length; i++) {
-        temp1.push(cd(this[i]));
+        temp1.push(cd(this[i])); // This is important
     }
     return temp1;
 }
@@ -49,8 +49,8 @@ console.log("result2", result2);
 Array.prototype.myFilter = function (cb) {
     let temp = [];
     for (let i = 0; i < this.length; i++) {
-        console.log("cb(this[i], i, this): ", this[i], i, this);
-        console.log("cb(this[i], i, this): ", cb(this[i], i, this));
+        // console.log("cb(this[i], i, this): ", this[i], i, this); // Invidual value, index, all array
+        // console.log("cb(this[i], i, this): ", cb(this[i], i, this)); // Give true of false 
         if (cb(this[i], i, this)) {
             temp.push(this[i]);
         }
@@ -58,7 +58,7 @@ Array.prototype.myFilter = function (cb) {
     return temp;
 };
 
-// arr.myFilter((n) => n > 2);
+arr.myFilter((n) => n > 2);
 
 // Reduce Polyfill
 Array.prototype.myReducer = function (cb, initialValue) {
@@ -68,15 +68,19 @@ Array.prototype.myReducer = function (cb, initialValue) {
     }
     return accumulator;
 };
-
-let aReducer = arr.myReducer((acc, curr) => acc + curr, 0);
+let reducerArray = [1, 2, 3, 4, 5];
+let aReducer = reducerArray.myReducer((acc, curr) => acc + curr, 0);
 console.log("aReducer", aReducer);
 
 
-console.log(1 + "1")
-console.log("1" + 1);
-console.log(1 + true)
-console.log(1 + undefined)
+console.log(1 + "1") // 11
+console.log("1" + 1); // 11
+console.log(1 - "1") // 0
+console.log("1" - 1); // 0
+console.log(1 + true) // 2
+console.log(1 + false) // 1
+console.log(1 + null) // 1
+console.log(1 + undefined) // NaN   
 
 
 console.log("----------------------- Call, Apply, Bind -----------------------")
@@ -108,15 +112,15 @@ show.call(obj); // Called using call
 
 if (!Function.prototype.customCall) {
     Function.prototype.customCall = function (context, ...args) {
-        console.log("this in customCall: ", this); // [Function: show]
-        console.log("this in context: ", context); // { msg: 'Called using call' 
-        console.log("this in globalThis: ", globalThis); //  <ref *1> Object [global] {...
+        // console.log("this in customCall: ", this); // [Function: show]
+        // console.log("this in context: ", context); // { msg: 'Called using call' 
+        // console.log("this in globalThis: ", globalThis); //  <ref *1> Object [global] {...
         context = context || globalThis;
 
         const key = Symbol(); // unique key to avoid conflict
         context[key] = this; // assign the function to the context, so that it can be called as a method, 'this' is the function to be called
 
-        console.log("context after adding function: ", context); // { msg: 'Called using call', [Symbol()]: [Function: show] }
+        // console.log("context after adding function: ", context); // { msg: 'Called using call', [Symbol()]: [Function: show] }
         // Execute the function and capture the result
         const result = context[key](...args);
         console.log("result in customCall: ", result); // undefined, because in show function does not return anything
@@ -142,12 +146,12 @@ Function.prototype.customApply = function (context, args) {
     // If context is null or undefined, set it to global object
     context = context || globalThis;
     // Create a unique property on the context to avoid overwriting existing properties
-    const fnSymbol = Symbol();
-    context[fnSymbol] = this; // 'this' is the function to be called
+    const key = Symbol();
+    context[key] = this; // 'this' is the function to be called
     // Execute the function and capture the result
-    const result = context[fnSymbol](...(args || []));
+    const result = context[key](...(args || []));
     // Delete the temporary property
-    delete context[fnSymbol];
+    delete context[key];
     // Return the result of the function call
     return result;
 };
@@ -161,14 +165,14 @@ console.log(sum.customApply(null, [2, 3])); // 5
 
 
 
-Function.prototype.customBind = function (context, ...restArgs) {
+Function.prototype.customBind = function (context, ...args) {
     // Save reference to the original function
     // this is the function in which we invoke my Bind
     // show.myBind();// this will point to show function
     const self = this;
     return function (...newArgs) {
         // Merge the arguments passed to bind with those passed to the new function
-        return self.apply(context, [...restArgs, ...newArgs]);
+        return self.apply(context, [...args, ...newArgs]);
     };
 };
 
@@ -180,3 +184,32 @@ function greet(city) {
 
 const boundFn = greet.customBind(objBind);
 console.log(boundFn("Bangalore")); // Rishi from Bangalore context[key]
+
+
+// Need to create custom entries
+
+const obj1 = {
+    "name": "raj",
+    "age": "30"
+}
+//[["name","raj"],["age":"30"]]
+
+const objArray = Object.entries(obj1);
+// console.log(objArray)
+
+Object.prototype.customEntries = function () {
+    const inputObject = this;
+    let tempArray = [];
+    for (let key in inputObject) {
+        console.log("key", this[key])
+        if (inputObject.hasOwnProperty(key)) {
+            tempArray.push([key, inputObject[key]])
+        }
+    }
+    return tempArray;
+}
+
+const customEntries = obj1.customEntries()
+
+
+console.log("customEntries: ", customEntries)

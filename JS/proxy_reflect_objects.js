@@ -1,9 +1,11 @@
 // 🧠 Easy memory:
 // Proxy = Control
 // Reflect = Actual operation
-// Proxy intercepts object operations.Reflect performs the default behavior.
+// Proxy intercepts object operations.
+// Reflect performs the default behavior.
 
 /**
+ * Proxy wraps an object and intercepts fundamental operations (get, set, delete, apply, etc.)  vian 'traps'. Used for validation, logging, reactivity systems (Vue 3), mocking.
  * Proxy: In essence, a Proxy object is a wrapper around another object, often called the target. 
  */
 
@@ -13,9 +15,9 @@
  */
 
 const p1 = {
-    fname: 'Hrishikesh',
-    name: "Pal",
-    age: 18
+    fname: 'Rishikesh',
+    lname: "Pal",
+    age: 0
 }
 // p1.age = -10; // Here we are changing the irrelevant value
 
@@ -34,7 +36,7 @@ const p1Proxy = new Proxy(p1, {
                 break;
             case 'age':
                 if (typeof value !== 'number') throw new Error(`${prop} must be Number`)
-                if (age <= 0) throw new Error(`${prop} must be > Zero`)
+                if (value <= 0) throw new Error(`${prop} must be > Zero`)
         }
         //  Set value mannually
         //  target[prop] = value;
@@ -47,7 +49,24 @@ console.log(p1);
 console.log(p1Proxy.age);
 p1Proxy.lname = "NewLastName"; // Error: lname does not exists
 // p1Proxy.fname = 123; // Error: fname must be string
-// p1Proxy.age = -10; // Error: age must be > Zero
+// p1Proxy.age = 0; // Error: age must be > Zero
 
 
 
+
+
+
+const handler = {
+    get(target, prop) {
+        return prop in target ? target[prop] : `Property ${prop} not found`;
+    }, 
+    set(target, prop, value) {
+        if (typeof value !=='number') throw TypeError('Numbers only'); 
+            target[prop] = value;
+            return true;
+    }
+}; 
+const obj = new Proxy({}, handler); 
+obj.x = 42; // OK 
+console.log(obj.x); // 42
+console.log(obj.y); // Property y not found

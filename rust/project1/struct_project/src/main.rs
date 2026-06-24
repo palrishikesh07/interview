@@ -1,47 +1,58 @@
-fn main() {
-    // let mut apple = Fruit{
-    //     name: String::from("Apple"),
-    //     // colour:String::from("Red"),
-    //     grams:100,
-    //     price:5.5
-    // };
 
-    // let name = apple.name;
-    // let grams = apple.grams;
+fn main(){
 
-    // println!("{name} weight {grams}");
-    // println!("Old weight {:?}",apple.grams);
-    // apple.grams = 250;
-    // println!("New weight {:?}",apple.grams);
+    let r1  = Reactangle{
+        width:10,
+        height:20,
+    };
 
-    let orange = create_fruit("Orange", 220);
-    println!(
-        "{} g of {} cost : ${:.2}",
-        orange.grams, orange.name, orange.price
-    );
+    let r2 = Reactangle{
+        width:30,
+        height:30,
+    };
+
+    dbg!(r1.get_area());
+    dbg!(r2.get_area());
+
+    dbg!(r1.fits_inside(&r2));
+    r1.description();
+
+    let rt1 = Reactangle::new_square(40);
+    rt1.description();
+    Reactangle::description(&rt1);
+
 }
 
-struct Fruit {
-    name: String,
-    // colour: String,
-    grams: i32,
-    price: f32,
+struct Reactangle{
+    width:u32,
+    height: u32,
 }
 
-fn create_fruit(name: &str, grams: i32) -> Fruit {
-    Fruit {
-        name: String::from(name),
-        grams: grams,
-        price: (0.02 * grams as f32),
+impl Reactangle {
+    fn get_area(&self) -> u32 {
+    self.width * self.height
+    }
+
+    fn fits_inside(&self, other: &Reactangle) -> bool{
+        self.width < other.width && self.height < other.height
+    }
+
+}
+
+//We can have more than 1 implementation also
+impl Reactangle {
+    fn description(&self){
+        println!("Reactanlge [width ={}, height={}]",self.width, self.height);
     }
 }
 
-// Or Shorthand
+// Asscoiate method
 
-fn create_fruit_short(name: String, grams: i32) -> Fruit {
-    Fruit {
-        name,
-        grams,
-        price: (0.02 * grams as f32),
+impl  Reactangle {
+    fn new_square(size: u32)-> Self{
+        Self { 
+            width: size, 
+            height: size 
+        }
     }
 }

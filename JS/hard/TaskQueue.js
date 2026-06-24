@@ -10,36 +10,33 @@ class TaskQueue {
         this.runNext();
     }
 
-
     async runNext() {
-        if (this.running >= this.limit || this.queue.length === 0) {
-            return
-        }
+        while (this.running < this.limit && this.queue.length > 0) {
+            const task = this.queue.shift();
+            this.running++; // Increment running count before executing the task
 
-        const task = this.queue.shift();
-        this.running++;
-        try {
-            await task();
-        } catch (error) {
-
+            task()
+                .catch(console.error)
+                .finally(() => {
+                    this.running--;
+                    this.runNext();
+                });
         }
-        finally {
-            this.running--;
-            this.runNext();
-        }
-
     }
 
 }
 
+
 const customTask = () => {
-    setTimeout(() => {
-        console.log('Hi');
-    }, 1000);
-}
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Hi');
+            resolve();
+        }, 1000);
+    });
+};
 
-
-const queue = new TaskQueue(1);
+const queue = new TaskQueue(3);
 
 
 queue.enqueue(customTask);
@@ -55,7 +52,7 @@ function add(a) {
 }
 
 const addFive = add(5);
-console.log(addFive(4));
+// console.log(addFive(4));
 
 
 
@@ -68,14 +65,14 @@ function* fibonacci() {
 }
 
 const fib = fibonacci();
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
-console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
+// console.log(fib.next().value);
 
 
 

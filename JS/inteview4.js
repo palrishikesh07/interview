@@ -490,3 +490,35 @@ To survive these questions, remember:
 🎯 15+ Years Architect-Level One-Liner
 Node.js event loop scheduling is a cooperation between libuv’s macrotask phases and V8’s microtask queue, where process.nextTick has priority over Promise microtasks and can starve I/O if abused.
 */
+
+
+//What is tail call optimization?
+//TCO is an optimization where the engine reuses the current stack frame for a tail call (a function call as the last action), preventing stack growth. ES6 specifies TCO but only Safari fully implements it. Enables stack-safe recursion.
+
+// Tail recursive (can be optimized) 
+function factorial(n, acc = 1) {
+  if (n <= 1)
+    return acc; 
+  return factorial(n - 1, n * acc); // tail call 
+}
+
+console.log(factorial(5))
+
+
+
+// What is Intl API?
+
+//The Internationalization API (Intl) provides locale-sensitive string comparison, number formatting, date/time formatting, and more. 
+// Handles localization without external libraries.
+
+// Number formatting
+const currencty = new Intl.NumberFormat('en-IN', { 
+  style: 'currency',
+  currency: 'INR' 
+}).format(1234567); // '■12,34,567.00' 
+
+// Date new
+const dateTime = new Intl.DateTimeFormat('hi-IN').format(new Date()); // Hindi date format
+
+console.log(currencty);
+console.log(dateTime);
