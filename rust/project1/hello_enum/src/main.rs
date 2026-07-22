@@ -1,52 +1,35 @@
-fn main() {
-    // Example one
 
-    let on = State::On;
-    let off = State::Off;
-    toggle(on);
+fn main(){
+    // let user_input: Option<i32> = Some(10);
+    // set_brightness(user_input);
 
+    let coin: Crypto = Crypto::Btc(2);
 
-    // Example two
-    let home = IpAddress{
-        kind:IP::V4,
-        address: String::from("127.0.0.1"),
-    };
+    if let Crypto::Btc(amount) = coin{
+        println!("You are rich mate! you have {amount} bitcoins.")
+    }
+    else {
+        println!("Other Cypto")
+    }
 
-    let message = Message::Create(String::from("Hello Rishi"));
-    message.call();
+    // Other approach
 
+    match coin {
+        Crypto::Btc(amount) => println!("You are rich mate! {amount} bitcoins"),
+        _=>println!("Other Crypto...")
+    }
+    
 }
 
-enum State{
-    On,
-    Off,
-}
-
-fn toggle(current_state: State){}
-
-
-enum IP {
-    V4,
-    V6,
-}
-
-struct IpAddress{
-    kind:IP,
-    address:String
+enum Crypto{
+    Btc(i32),
+    Eth(i32)
 }
 
 
-enum Message{
-    Quit,
-    Move {x: i32, y:i32},
-    Create(String),
-    ChangeColor(i32,i32,i32),
-}
-
-// If we are creating Struct we have to create for each and every type with fixed its types
-
-impl Message {
-    fn call(&self){
-        println!("Calling the method...");
+fn set_brightness(brightness:Option<i32>){
+    match brightness {
+        Some(values) => println!("The brighness was se to {values}%"),
+        _=>()
     }
 }
