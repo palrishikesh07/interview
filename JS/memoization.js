@@ -17,7 +17,7 @@ console.log(name); // Guest
 
 const lName = 0 || "Kumar";
 
-console.log(lName);
+console.log(lName); // "Kumar";
 
 // Memoizaiton seprate function
 

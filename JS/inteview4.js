@@ -76,7 +76,7 @@ Node.js event loop has 6 main phases:
 5. Check
 6. Close Callbacks
 
-After every phase:
+After every phase: (from 1 to 6 phases, find microtasks queue)
 👉 Microtasks queue runs
 process.nextTick
 Promise.then

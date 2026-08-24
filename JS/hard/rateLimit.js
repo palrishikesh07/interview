@@ -1,9 +1,11 @@
 class RateLimiter {
+
     constructor(limit, windowMs) {
         this.limit = limit;
         this.windowMs = windowMs;
         this.request = [];
     }
+
     allowRequest() {
         const now = Date.now();
         //Remove expired request
@@ -41,7 +43,9 @@ class UserRateLimiter {
         this.users = new Map();
     }
 
+
     allow(userId) {
+
         const now = Date.now();
 
         if (!this.users.has(userId)) {
@@ -50,10 +54,7 @@ class UserRateLimiter {
 
         const timestamps = this.users.get(userId);
 
-        while (
-            timestamps.length &&
-            now - timestamps[0] > this.windowMs
-        ) {
+        while ( timestamps.length && now - timestamps[0] > this.windowMs) {
             timestamps.shift();
         }
 
@@ -62,6 +63,7 @@ class UserRateLimiter {
         }
 
         timestamps.push(now);
+        
         console.log(JSON.stringify(timestamps))
         return true;
     }

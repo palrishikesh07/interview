@@ -8,7 +8,7 @@ global point of access to it.
 const SingleTon = (function () {
     let instance;
     function createInstance() {
-        return { name: 'Hrishi SingleTon Instance' }
+        return { name: 'Rishi SingleTon Instance' }
     }
     return {
         getInstance: function () {
@@ -34,7 +34,9 @@ function areObjectsEqual(obj1, obj2) {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 const obj1 = { a: 1, b: 2 };
+const obj2 = { a: 1, b: 2 };
 
+console.log("areObjectsEqual: "+areObjectsEqual(obj1.obj2));
 
 function sum(a, b) {
     return a + b;
@@ -57,6 +59,21 @@ function memoize(fn) {
     }
 }
 
+
+// function memori(fn){
+//     const cahce={};
+//     return (...args)=>{
+//         const key = JSON.stringify(...args);
+//         if(cahce[key]){
+//             return cahce[key];
+//         }
+//         else{
+//             const result = fn(...args);
+//             caches[key] = result;
+//             return result;
+//         }
+//     }
+// }
 
 const sumMemeo = memoize(sum)
 
@@ -96,9 +113,36 @@ const myInterableObj = {
     }
 }
 
+
+
+
 for (let ob of myInterableObj) {
     console.log(ob);
 }
+
+function createIterable(obj,key){
+    return {
+        ...obj,
+        [Symbol.iterator](){
+            let index = 0;
+            const items = this[key];
+
+            return {
+                next(){
+                    return index < items.length ? {value: items[index++],done:false}:{done:true}
+                }
+            }
+        }
+    }
+}
+
+
+const objCreateItere = createIterable({ numbers: [1, 2, 3, 4]},"numbers");
+
+for (const value of objCreateItere) {
+    console.log("objCreateItere : "+ value);
+}
+
 
 class IterrableArray {
     constructor(data) {
@@ -114,6 +158,8 @@ class IterrableArray {
         }
     }
 }
+
+
 
 const iArray = new IterrableArray([10, 20, 30, 40, 50]);
 console.log(iArray);
@@ -178,6 +224,13 @@ function flatterArray(arr) {
     }, [])
 }
 
+function customFlattenArray(arr){
+    return arr.reduce((acc,value)=>{
+        return Array.isArray(value) ? acc.concat(customFlattenArray(value)): acc.concat(value);
+    },[])
+}
+
+console.log("customFlattenArray :"+ customFlattenArray(nestedArray));
 
 console.log(flatterArray(nestedArray));
 
@@ -198,8 +251,7 @@ function flattenObject(obj, parentKey = '', result = {}) {
     for (const key in obj) {
         const newKey = parentKey ? `${parentKey}.${key}` : key;
 
-        console.log('Key: ', newKey);
-        console.log('Typeof: ', typeof obj[key]);
+
         if (typeof obj[key] === 'object') {
             flattenObject(obj[key], newKey, result)
         }
@@ -218,7 +270,9 @@ objCircular.self = objCircular;
 
 function safeStringify(obj) {
     const seen = new WeakSet();
+    
     return JSON.stringify(obj, (key, value) => {
+        
         if (typeof value === 'object' && value !== null) {
             if (seen.has(value)) {
                 return "[Circular]";

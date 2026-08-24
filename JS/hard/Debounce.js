@@ -1,4 +1,6 @@
-// Debouncing delays a function's execution until after a specified time has elapsed since the last invocation. 
+
+// Wait until the user stop doing something, then execute the function only once.
+
 // If called again before the delay ends, the timer resets.
 // Used for search boxes, resize handlers, window scroll — prevents excessive calls.
 
@@ -8,15 +10,16 @@
 
 
 
-function debouncing(fn, delay) {
+function debouncing(fn, delay =1000) {
     let timer;
     return function (...args) {
-        clearTimeout(timer);
+        clearTimeout(timer); // Clear out last referenceo of setTimeout
         timer = setTimeout(() => {
             fn(...args)
         }, delay);
     }
 }
+
 
 
 function search(query) {
@@ -70,3 +73,17 @@ searchWithDebouncing("Hrishikesh Pal")
 // search("Hrishikesh P")
 // search("Hrishikesh Pa")
 // search("Hrishikesh Pal")
+
+
+
+/*
+
+| Feature     | Debouncing            | Throttling                |
+| ----------- | --------------------- | ------------------------- |
+| Executes    | After the event stops | Every fixed interval      |
+| Calls       | One final call        | Multiple controlled calls |
+| Best For    | Search input          | Scroll, resize, mousemove |
+| Easy Memory | **Stop → Execute**    | **Every X ms → Execute**  |
+
+
+*/

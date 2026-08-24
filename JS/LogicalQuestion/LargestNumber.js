@@ -4,9 +4,9 @@ function largestNumber(nums) {
     // Your implementation
     const sortedNums = nums.sort((a, b) => {
         const order1 = '' + a + b;
-        // console.log("order1..", order1);
+        console.log("order1..", order1);
         const order2 = '' + b + a;
-        // console.log("order2..", order2);
+        console.log("order2..", order2);
         // console.log("order2.localeCompare(order1)..", order2.localeCompare(order1));
         return order2.localeCompare(order1);
     });
@@ -20,9 +20,9 @@ function largestNumber(nums) {
 
 // console.log(largestNumber([3, 30,8]));
 // console.log(largestNumber([3, 30, 34, 5, 9]));
-// console.log(largestNumber([54, 546, 548, 60]));
-console.log(largestNumber([0, 9, 8, 7]));
-
+console.log(largestNumber([54, 546, 548, 60]));
+// console.log(largestNumber([0, 9, 8, 7]));
+// 
 
 
 function largestNumber2(nums) {

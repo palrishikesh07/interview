@@ -9,23 +9,23 @@
 
 // // Currying function
 
-// function addCurrying(a) {
-//     return function (b) {
-//         return function (c) {
-//             return a + b + c;
-//         }
-//     }
-// }
+function addCurrying(a) {
+    return function (b) {
+        return function (c) {
+            return a + b + c;
+        }
+    }
+}
 
-// console.log(addCurrying(10)(20)(30))
+console.log(addCurrying(10)(20)(30))
 
 
 // // 1️⃣ Partial Application(Very Important for Interviews)
 
-// const multiply = a => b => a * b;
+const multiply = a => b => a * b;
 
-// const double = multiply(2);
-// const triple = multiply(3);
+const double = multiply(2);
+const triple = multiply(3);
 
 // console.log(double(5)) // 10
 // console.log(triple(5)) // 15
@@ -54,18 +54,18 @@
 
 
 
-// function infiniteSum(a) {
+function infiniteSum(a) {
 
-//     return function (b) {
-//         if (b !== undefined) {
-//             return infiniteSum(a + b);
-//         }
+    return function (b) {
+        if (b !== undefined) {
+            return infiniteSum(a + b);
+        }
 
-//         return a;
-//     };
-// }
+        return a;
+    };
+}
 
-// console.log(infiniteSum(1)(2)(3)(4)()); // 10
+console.log(infiniteSum(1)(2)(3)(4)()); // 10
 
 
 // function curry(fn) {

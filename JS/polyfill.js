@@ -13,6 +13,13 @@ if (!Array.prototype.includes) {
     }
 }
 
+// function display(i){
+//     console.log(i)
+// }
+
+// const ar1 = [1,2,3];
+
+// const a = ar1.map(display);
 
 
 
@@ -32,7 +39,7 @@ const arr = [1, 2, 3, 4, 5];
 // const myMapSolution = arr.myMap((n) => n * n);
 // console.log("myMapSolution:  ",myMapSolution)
 
-Array.prototype.myMap = function (cd) {
+Array.prototype.myMap1 = function (cd) {
     let temp1 = [];
     let length = this.length;
     for (let i = 0; i < length; i++) {
@@ -52,7 +59,7 @@ Array.prototype.myFilter = function (cb) {
         // console.log("cb(this[i], i, this): ", this[i], i, this); // Invidual value, index, all array
         // console.log("cb(this[i], i, this): ", cb(this[i], i, this)); // Give true of false 
         if (cb(this[i], i, this)) {
-            temp.push(this[i]);
+            temp.push(this[i]); // Return the value based on onbove condition
         }
     }
     return temp;
@@ -203,6 +210,7 @@ Object.prototype.customEntries = function () {
     for (let key in inputObject) {
         console.log("key", this[key])
         if (inputObject.hasOwnProperty(key)) {
+            
             tempArray.push([key, inputObject[key]])
         }
     }

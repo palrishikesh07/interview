@@ -1,4 +1,5 @@
 
+// Execute the function at a fixed interval,no matter how many times the event occurs.
 
 // Throttling limits a function to execute at most ONCE per specified time window.
 // Unlike debounce, it guarantees the function fires at regular intervals during continuous events.
@@ -24,6 +25,9 @@ function throttleMessage(fn, delay) {
 
 
 
+function sendMessage(val){
+    console.log("Sending message: ",val);
+}
 
 
 
@@ -36,7 +40,7 @@ sendMessageWithThrottling("Hi whats")
 
 setInterval(() => {
     sendMessageWithThrottling("Hi whatsApp")
-}, 1000);
+},100);
 
 
 // sendMessage("H")
@@ -58,4 +62,4 @@ function throttle(fn, limit) {
     };
 }
 
-window.addEventListener('scroll', throttle(updateUI, 100));
+// window.addEventListener('scroll', throttle(updateUI, 100));

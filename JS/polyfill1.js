@@ -10,12 +10,14 @@ const obj1={
 // console.log(objArray)
 
 Object.prototype.customEntries=function(){
-    console.log(this)
-    // const inputObject = this;
+    // console.log(this)
+    const outputArray = [];
     for(let key in this){
-        console.log("key",this[key])
+        // console.log("key",this[key])
+        if(Object.hasOwn(this,key))
+        outputArray.push([key,this[key]]);
     }
-    return "hi how are you";
+    return outputArray;
 }
 
 const customEntries = obj1.customEntries()

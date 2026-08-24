@@ -1,3 +1,35 @@
+//A Task Scheduler is a system that manages and executes tasks based on a schedule, priority, or available resources.
+
+
+
+
+class TaskSchedulerBasic{
+    constructor(){
+        this.tasks=[];
+    }
+
+    addTask(task){
+        this.tasks.push(task);
+    }
+
+    run(){
+        while(this.tasks.length > 0){
+            const task = this.tasks.shift();
+            task();
+        }
+    }
+}
+
+
+const schedulerBasic = new TaskSchedulerBasic();
+schedulerBasic.addTask(()=>console.log("Basic Task 1"));
+schedulerBasic.addTask(()=>console.log("Basic Task 2"));
+schedulerBasic.addTask(()=>console.log("Basic Task 3"));
+
+schedulerBasic.run();
+
+
+
 class TaskScheduler {
     constructor(concurrency) { // limit
         this.concurrency = Number(concurrency);
@@ -58,3 +90,5 @@ scheduler.addTask(() => new Promise((res) => setTimeout(() => {
 scheduler.addTask(() => new Promise((res) => setTimeout(() => {
     res('Task 3')
 }, 100)))
+
+

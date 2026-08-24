@@ -7,14 +7,14 @@ const employee =
     { id: "10", company: "HCL" }];
 
 const newObj = {};
-function getUnqiue(arr) {
+function getUnqiue() {
     for (const emp of employee) {
         newObj[emp.id] = emp
     }
-    console.log("newObj: ", newObj)
+    // console.log("newObj: ", newObj)
     return Object.values(newObj)
 }
-console.log(getUnqiue(employee))
+console.log(getUnqiue())
 
 
 
@@ -35,7 +35,7 @@ const uniqueEmployeesSet = employee.filter(emp => {
     seen.add(emp.id);
     return true;
 })
-console.log("seenseen: ", seen)
+// console.log("seenseen: ", seen)
 
 // console.log("uniqueEmployeesSet: ", uniqueEmployeesSet)
 

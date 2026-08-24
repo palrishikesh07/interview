@@ -1,3 +1,34 @@
+//EventEmitter is a Node.js class that allows one part of an application to emit (trigger) events 
+// and another part to listen for and respond to those events.
+
+/*
+👉 "Emit = Trigger"
+👉 "On = Listen"
+*/
+
+
+const EventEmitter = require("events");
+
+// Create EventEmitter object
+const emitter = new EventEmitter();
+
+// Register (Listen) for an event
+emitter.on("greet",(name)=>{
+    console.log(`Helloi ${name}`);
+})
+
+// Trigger (Emit) the event
+emitter.emit("greet","Rishikesh");
+
+
+//Passing Multiple Arguments
+
+emitter.on("orderPlaced", (id, amount) => {
+    console.log(`Order ID: ${id}`);
+    console.log(`Amount: ${amount}`);
+});
+
+emitter.emit("orderPlaced", 101, 2500);
 
 
 // Selft implementation of EventEmitter class

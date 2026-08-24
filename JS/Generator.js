@@ -1,4 +1,6 @@
 
+//A Generator Function is a special function that can pause its execution using yield and 
+// resume later from the same point.
 
 // Generator functions (function*) return a Generator object. 
 // They can pause execution at yield and resume later via next(). 

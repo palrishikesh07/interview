@@ -1,3 +1,6 @@
+//Observer is a design pattern where one object (Subject) notifies multiple other 
+// objects (Observers) whenever something changes.
+
 class Subject {
     constructor() {
         this.observers = []
@@ -7,20 +10,21 @@ class Subject {
         this.observers.push(observer)
     }
     notifiy(data) {
-        this.observers.forEach((observer) => observer.update(data));
+        this.observers.forEach((observer) => observer(data));
     }
 }
 
-class Observer {
-    update(data) {
-        console.log('Received: ', data);
-    }
-}
 
-const subject = new Subject();
-const observer1 = new Observer();
-const observer2 = new Observer();
 
-subject.subscribe(observer1)
-subject.subscribe(observer2)
-subject.notifiy("Hello Observer!");
+const youtube = new Subject();
+
+youtube.subscribe((msg)=>{
+    console.log(`User 1: `, msg)
+})
+
+youtube.subscribe((msg)=>{
+    console.log(`User 2: `, msg)
+
+})
+
+youtube.notifiy("New JS Task completed!");

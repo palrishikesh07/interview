@@ -1,26 +1,15 @@
-// class LRUCache {
-//     constructor(capacity) {
-//         this.capacity = capacity;
-//         this.head = null;
-//         this.tail = null;// LRU (Least Recently Used) 
-//         // HashMap
-//         this.map = new Map(); // <key>:<Node address>
+// LRU (Least Recently Used) Cache removes the item that has not been used for the 
+// longest time when the cache becomes full.
 
-//     }
-
-//     get(key) {
-
-//     }
-
-//     put(key, value) {
-
-//     }
-// }
-
+/*
+👉 Recently used = Keep
+👉 Least recently used = Remove 
+ */
 
 
 
 class LRUCache {
+
     constructor(capacity) {
         this.capacity = capacity;
         this.cache = new Map();
@@ -51,7 +40,8 @@ class LRUCache {
         if (this.cache.size > this.capacity) {
             // console.log("key"+ this.cache.keys());
             // console.log("value:" + this.cache.keys().next().value);
-            const lruKey = this.cache.keys().next().value;
+            // const firstKey = this.cache.keys().next().value;
+            const lruKey = this.cache.keys().next().value; // Take value which least used
             this.cache.delete(lruKey);
         }
     }

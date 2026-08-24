@@ -1,6 +1,8 @@
 
 function isValid(s){
+
     let stack = [];
+
     let map = {
         '(': ')',
         '{': '}',
@@ -8,6 +10,7 @@ function isValid(s){
     };
 
     for (let char of s) {
+        
         if (map[char]) {
             // If it's an opening bracket, push the corresponding closing bracket onto the stack
             stack.push(map[char]);
