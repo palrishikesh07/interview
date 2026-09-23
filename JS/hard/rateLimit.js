@@ -77,3 +77,35 @@ console.log(userLimiter.allow("user1"));
 console.log(userLimiter.allow("user1"));
 console.log(userLimiter.allow("user1"));
 console.log(userLimiter.allow("user1"));
+
+
+// Simple rate limit
+
+const request = new Map();
+
+function rateLimiter(req,res,next){
+    const ip = req.ip;
+    const now = Date.now();
+
+    let data = request.get(ip);
+
+    if(!data || data.start > 60000){
+        data = {
+            start: now,
+            count:0
+        }
+    }
+
+    data.count++;
+
+    request.set(ip,data);
+
+    if(data.count > 100){
+        return res.status(429).json({
+            message:"Too many requests"
+        })
+    }
+
+    next();
+}
+

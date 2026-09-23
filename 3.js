@@ -1,3 +1,10 @@
+/*
+A shallow copy creates a new outer object, but nested objects still point to the same reference.
+A deep copy creates completely independent copies, including nested objects.(structuredClone)
+
+*/
+
+
 const obj1 = { a: 1, b: { c: 2 } };
 const shallowCopy = { ...obj1 }; // Shallow copy
 const deepCopy = JSON.parse(JSON.stringify(obj1)); // Deep copy

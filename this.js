@@ -1,0 +1,1 @@
+// what is 'this' keyword? how it will behave in strict mode and non-strict mode?

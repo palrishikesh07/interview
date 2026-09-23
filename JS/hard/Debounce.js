@@ -5,8 +5,7 @@
 // Used for search boxes, resize handlers, window scroll — prevents excessive calls.
 
 
-// User does not enter any thing for specifed time,than only call api,
-//  other wise reset time
+// User does not enter any thing for specifed time,than only call api, other wise reset time
 
 
 

@@ -29,7 +29,14 @@ console.log(5+3+"5")  // 8 + "5" = 85
 console.log(5+"3"+5); // "5" + "3" + 5 = 535
 console.log("5"-3+2); // 5 - 3 + 2 = 4
 
+
+
 console.log("*******************************************")
+
+ console.log('a' + 'b' + 2) // ab2
+ console.log('a' - 'b' + 2) // NaN
+
+ console.log("+++++++++++++++++++++++++++");
 
 console.log(false+""); // false
 console.log(false+[]); // false, internally it will convert [] to ""

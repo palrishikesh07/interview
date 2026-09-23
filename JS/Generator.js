@@ -12,7 +12,7 @@
 // yield → pause
 // .next() → resume
 
-
+// When to use, The biggest use case is when you don't want to generate all values in memory at once.
 
 function* fibonacci() {
     let [a, b] = [0, 1];
@@ -28,3 +28,16 @@ console.log(fib.next().value); // 1
 console.log(fib.next().value); // 2
 console.log(fib.next().value); // 3
 console.log(fib.next().value); // 5
+
+
+//Generators are iterable, You can use them directly with for...of:
+
+function* numbers() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+for (let num of numbers()) {
+    console.log(num);
+}
