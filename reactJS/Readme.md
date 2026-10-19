@@ -594,3 +594,46 @@ Balance by prioritizing critical paths.
 ## 🧠 Lead Interview Closing Statement
 
 > I design scalable React systems, optimize performance, manage state predictably, and mentor teams to deliver reliable production-grade applications.
+
+
+## Virtualization
+
+#### Q1. What is virtualization in React?
+Answer: Virtualization is a performance technique in which only the visible portion of a large list is rendered in the DOM. It reduces DOM nodes, rendering overhead, and memory used by mounted components.
+
+#### Q2. Why did you choose react-window?
+Answer: I chose react-window because it is lightweight and provides a simple API for rendering large lists efficiently. I used FixedSizeList because every employee row has a fixed height.
+
+#### Q3. What is the difference between FixedSizeList and VariableSizeList?
+Answer: FixedSizeList is suitable when all rows have the same height. VariableSizeList is used when row heights differ, such as expandable rows or descriptions of different lengths.
+
+#### Q4. Why must we pass the style prop to each row?
+Answer: The library calculates each row's position and dimensions dynamically. Applying the supplied style ensures rows appear at the correct position during scrolling.
+
+#### Q5. What is itemData?
+Answer: itemData passes shared data, such as an employee array, to each rendered row. This avoids relying on global variables and makes row components reusable.
+
+#### Q6. Why use itemKey?
+Answer: A stable uni#### Que key helps React identify records correctly when data changes. Employee IDs are safer than array indexes when searching, sorting, inserting, or deleting records.
+
+#### Q7. Does react-window prevent unnecessary React renders?
+Answer: It limits how many rows are mounted, but it does not prevent every unnecessary render. I would also use profiling, stable props, and memoization where measurements show they are beneficial.
+
+#### Q8. How would you handle 100,000 records from an API?
+Answer: I would use server-side pagination or cursor-based fetching, virtualization for visible rows, and debounced server-side search. This avoids downloading and filtering the entire dataset in the browser.
+
+#### Q9. What is overscan?
+Answer: Overscan renders a few extra rows outside the visible viewport. It reduces blank flashes during fast scrolling, at the cost of mounting some additional elements.
+
+#### Q10. What are the limitations of virtualization?
+Answer: It introduces complexity with dynamic row heights, keyboard navigation, accessibility, and component state. For example, an unmounted row cannot be found by ordinary DOM  Queries until it is rendered.
+
+#### Q11. What is the difference between virtualization and pagination?
+Answer: Pagination controls how much data is retrieved or displayed per page. Virtualization controls how many items are mounted in the DOM. They can be combined to handle large datasets efficiently.
+
+#### Q12. How would you measure whether virtualization improved performance?
+Answer: I would compare React Profiler timings, browser performance traces, DOM node counts, memory usage, and scrolling responsiveness before and after virtualization, using the same dataset and test conditions.
+
+#### Q13 Interviewer: “Your React page displays 50,000 products. Scrolling is slow, search is lagging, and each product has an image. How would you optimize it?”
+A strong answer:
+“I would use virtualization to render only visible products and implement debounced, preferably server-side, search to avoid filtering the entire dataset on every keystroke. I would optimize image loading with lazy loading, use stable keys, and profile the application to identify expensive renders. If the dataset is too large to load at once, I would combine virtualization with cursor-based pagination.”

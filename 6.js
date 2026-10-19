@@ -43,7 +43,9 @@ function sum(a, b) {
 }
 
 function memoize(fn) {
+
     const cache = {}
+    
     return (...args) => {
         const key = JSON.stringify(...args);
         if (cache[key]) {

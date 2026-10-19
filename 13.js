@@ -66,7 +66,7 @@ function getWordCount(str) {
     return count;
 }
 
-console.log(getWordCount(str));
+console.log("getWordCount ",getWordCount(str));
 
 
 
@@ -97,7 +97,7 @@ function checkStrLength(str,space = false){
     return count;
 }
 
-console.log(checkStrLength(string));
+console.log("checkStrLength ", checkStrLength(str));
 
 
 

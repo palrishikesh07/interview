@@ -1,11 +1,15 @@
+
 function example() {
     var x = 10;
     if (true) {
-        var x = 20; // re-declares x
+         var x = 20; // re-declares x (if let x = 20, then output will be 10 out of scope)
         console.log(x); // Output: 20
     }
     console.log(x); // Output: 20
 }
+
+example();
+console.log(".......Example")
 let y = 10;
 if (true) {
     let y = 20; // Creates a new y within this block

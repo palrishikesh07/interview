@@ -57,7 +57,7 @@ const add = (a, b) => a + b;
 console.log(add(2, 4));
 
 const greetArrowFunction = name => console.log(`Hello, ${name}`);
-greetArrowFunction('Hrishikesh')
+greetArrowFunction('Rishikesh')
 
 
 
@@ -70,6 +70,7 @@ function outerFunctoin(outerVariable) {
 
 const closure = outerFunctoin('Outside')
 closure('Inner')
+
 
 const obj = { a: 1, b: 2 };
 for (let key in obj) {
@@ -105,6 +106,8 @@ function greetCallback(name, callback) {
 function afterGreet(name = 'Hi') {
     console.log(`This message run after greet, e.g ${name} please have a juice`);
 }
+
+
 
 greetCallback('Rishi', afterGreet)
 

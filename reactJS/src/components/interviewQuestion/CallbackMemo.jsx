@@ -11,6 +11,7 @@ const CallbackMemo = () => {
     const handleClick = useCallback(() => {
         setCount(prevCount => prevCount + 1);
     }, []);
+    
   return (
    <>
     <div>CallbackMemo</div>

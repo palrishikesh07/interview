@@ -68,22 +68,23 @@ function infiniteSum(a) {
 console.log(infiniteSum(1)(2)(3)(4)()); // 10
 
 
-// function curry(fn) {
-//     return function curried(...args) {
-//         // Check if we have received enough arguments
-//         if (args.length >= fn.length) {
-//             // If yes, execute the original function
-//             return fn.apply(this, args);
-//         } else {
-//             // If no, return a new function that waits for more arguments
-//             return function (...nextArgs) {
-//                 console.log(args, ' ', ...nextArgs)
 
-//                 return curried.apply(this, args.concat(nextArgs));
-//             };
-//         }
-//     };
-// }
+function curry(fn) {
+    return function curried(...args) {
+        // Check if we have received enough arguments
+        if (args.length >= fn.length) {
+            // If yes, execute the original function
+            return fn.apply(this, args);  
+        } else {
+            // If no, return a new function that waits for more arguments
+            return function (...nextArgs) {
+                console.log(args, ' ', ...nextArgs)
+
+                return curried.apply(this, args.concat(nextArgs));
+            };
+        }
+    };
+}
 
 // // 1. Define a standard function
 // const totalSum = (a, b, c) => a + b + c;

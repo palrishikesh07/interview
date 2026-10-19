@@ -24,11 +24,8 @@ const useCustomHook = (url) => {
       getAPIData(url);
     }, 5000);
   }, [url]);
-  return {
-    data,
-    loading,
-    error,
-  };
+
+  return { data, loading, error };
 };
 
 export default useCustomHook;

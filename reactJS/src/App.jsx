@@ -31,6 +31,11 @@ import Pagination from "./components/interviewQuestion/Pagination";
 import UseMemoOptimzation from "./components/interviewQuestion/UseMemoOptimzation";
 import CallbackMemo from "./components/interviewQuestion/CallbackMemo";
 import Todo from "./components/interviewQuestion/Todo";
+import VirtualReactWindow from "./components/virtualizationComponent/VirtualReactWindow";
+import ParentLifeCycle from "./components/lifeCycleComponent/ParentLifeCycle";
+import RefFoucs from "./components/interviewQuestion/RefFoucs";
+import StartStopTimer from "./components/interviewQuestion/StartStopTimer";
+import StartStopTimerWithState from "./components/interviewQuestion/StartStopTimerWithState";
 
 function App() {
   return (
@@ -68,7 +73,12 @@ function App() {
       {/* <Pagination/> */}
       {/* <UseMemoOptimzation/> */}
       {/* <CallbackMemo/> */}
-      <Todo/>
+      {/* <Todo/> */}
+      {/* <VirtualReactWindow/> */}
+      {/* <ParentLifeCycle/> */}
+      {/* <RefFoucs/> */}
+      {/* <StartStopTimer/> */}
+      <StartStopTimerWithState/>
     </>
   );
 }

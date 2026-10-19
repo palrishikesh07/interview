@@ -7,7 +7,9 @@ A deep copy creates completely independent copies, including nested objects.(str
 
 const obj1 = { a: 1, b: { c: 2 } };
 const shallowCopy = { ...obj1 }; // Shallow copy
+
 const deepCopy = JSON.parse(JSON.stringify(obj1)); // Deep copy
+
 shallowCopy.b.c = 42;
 console.log(obj1.b.c); // Output: 42 (shallow copy affected original)
 deepCopy.b.c = 100;
@@ -36,29 +38,7 @@ count();
 // }, 2000);
 
 
-const callAPI = () => {
-    console.log("Calling API");
-}
 
-// callAPI()
-// callAPI()
-// callAPI()
-
-const debouncing = (func, delay) => {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            return func(...args)
-        }, delay);
-    }
-}
-
-const debouncingAPI = debouncing(callAPI, 1000)
-
-// debouncingAPI()
-// debouncingAPI()
-// debouncingAPI()
 
 
 const person = {
@@ -126,26 +106,13 @@ console.log("Freeze: ", obj);
 const objSeal = { a: 1, b: 2 };
 
 Object.seal(objSeal);
-objSeal.a = 10; //allowed
+objSeal.a = 10; //allowed (Value can be updated)
 objSeal.new = 'new'; // Not allowed
 delete objSeal.b; // Not allowed
 console.log("Seal: ", objSeal);
 
 
-function* generatorFunc() {
-    yield 1;
-    yield 2;
-    yield 3;
-    yield 'Completed !';
-}
 
-const gen = generatorFunc();
-console.log('Gen1: ', gen.next());
-console.log('Gen2: ', gen.next().value);
-console.log('Gen3: ', gen.next().value);
-console.log('Gen4: ', gen.next()); //  { value: 'Completed !', done: false }, last value
-console.log('Gen5: ', gen.next()); // { value: undefined, done: true }
-console.log('Gen6: ', gen.next()); // { value: undefined, done: true }
 
 const sym1 = Symbol("id")
 const sym2 = Symbol("id")

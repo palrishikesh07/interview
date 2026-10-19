@@ -12,9 +12,10 @@
 function debouncing(fn, delay =1000) {
     let timer;
     return function (...args) {
+        
         clearTimeout(timer); // Clear out last referenceo of setTimeout
         timer = setTimeout(() => {
-            fn(...args)
+            return fn(...args)
         }, delay);
     }
 }

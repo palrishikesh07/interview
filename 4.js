@@ -51,4 +51,5 @@ const person = {
     }
 };
 person.greet(); // Output: Hello, Guest
+// person.greet.call(person); // Output: Hello, Guest
 

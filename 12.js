@@ -116,7 +116,7 @@ if (!Array.prototype.customMap) {
 console.log([10, 22, 30].customMap(x => x * 2)); // Output: [2, 4, 6]
 
 
-const srt = "HRishikesh";
+const srt = "Rishikesh";
 
 function reverseIt(str) {
     return str.split("").reverse().join("");

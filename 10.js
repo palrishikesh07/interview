@@ -1,3 +1,16 @@
+// ./JS/proxy_reflect_objects.js
+/**
+ * Proxy wraps an object and intercepts fundamental operations (get, set, delete, apply, etc.)  vian 'traps'. 
+ * Used for validation, logging, reactivity systems (Vue 3), mocking.
+ * Proxy: In essence, a Proxy object is a wrapper around another object, often called the target. 
+ */
+
+/**
+ * Reflect: The Bridge to Default Operations
+ * the actual operation to the target object.
+ * Using Reflect ensures we do this consistently and correctly, especially in inheritance scenarios.
+ */
+
 const handler = {
     get: function (target, prop) {
         return prop in target ? target[prop] : `No such property: ${prop}`;

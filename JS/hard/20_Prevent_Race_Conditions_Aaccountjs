@@ -1,0 +1,43 @@
+
+
+
+async function withdraw(accountId, amount) {
+  const account = await getAccount(accountId);
+
+  if (account.balance >= amount) {
+    await updateBalance(
+      accountId,
+      account.balance - amount
+    );
+
+    return "Success";
+  }
+
+  throw new Error("Insufficient balance");
+}
+//Initial balance: ₹1,000. Two requests each try to withdraw ₹800.
+//The problem is that reading the balance, checking it, and updating it are separate operations. Both requests can pass the check before either update becomes visible.
+
+
+
+async function withdraw(accountId, amount) {
+  if (!Number.isFinite(amount) || amount <= 0) {
+    throw new Error("Invalid withdrawal amount");
+  }
+
+  const result = await db.query(
+    `UPDATE accounts
+     SET balance = balance - $1
+     WHERE id = $2
+       AND balance >= $1
+     RETURNING balance`,
+    [amount, accountId]
+  );
+
+  if (result.rowCount === 0) {
+    throw new Error("Insufficient balance or account not found");
+  }
+
+  return "Success";
+}
+

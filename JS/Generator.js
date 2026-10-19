@@ -30,7 +30,27 @@ console.log(fib.next().value); // 3
 console.log(fib.next().value); // 5
 
 
-//Generators are iterable, You can use them directly with for...of:
+
+
+
+function* generatorFunc() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 'Completed !';
+}
+
+const gen = generatorFunc();
+console.log('Gen1: ', gen.next());     //{ value: 1, done: false }
+console.log('Gen2: ', gen.next().value); // 2
+console.log('Gen3: ', gen.next().value); // 3
+console.log('Gen4: ', gen.next()); //  { value: 'Completed !', done: false }, last value
+console.log('Gen5: ', gen.next()); // { value: undefined, done: true }
+console.log('Gen6: ', gen.next()); // { value: undefined, done: true }
+
+
+
+
 
 function* numbers() {
     yield 1;
@@ -38,6 +58,10 @@ function* numbers() {
     yield 3;
 }
 
+//Generators are iterable, You can use them directly with for...of:
+
 for (let num of numbers()) {
     console.log(num);
 }
+
+
