@@ -1,0 +1,11 @@
+flowchart LR
+    API["Node.js Order API"] --> DB[("Orders DB + Outbox")]
+    DB --> PUB["Outbox Publisher"]
+    PUB --> K[("Kafka: orders")]
+    K --> PAY["Payment Consumer"]
+    K --> INV["Inventory Consumer"]
+    K --> NOT["Notification Consumer"]
+    K --> ANA["Analytics Consumer"]
+    PAY --> PDB[("Payment DB")]
+    INV --> IDB[("Inventory DB")]
+    NOT --> EMAIL["Email provider"]

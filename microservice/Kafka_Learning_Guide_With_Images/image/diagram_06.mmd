@@ -1,0 +1,15 @@
+flowchart TB
+    subgraph Topic["orders topic: 4 partitions"]
+      P0["P0"]
+      P1["P1"]
+      P2["P2"]
+      P3["P3"]
+    end
+    subgraph Group["Consumer group: order-workers"]
+      C1["Consumer 1"]
+      C2["Consumer 2"]
+    end
+    P0 --> C1
+    P1 --> C1
+    P2 --> C2
+    P3 --> C2

@@ -1,0 +1,7 @@
+flowchart TD
+    A["Order API"] --> TX["One DB transaction"]
+    TX --> O["Update orders table"]
+    TX --> B["Insert outbox event"]
+    B --> P["Outbox publisher / CDC"]
+    P --> K[("Kafka: orders")]
+    K --> C["Downstream consumers"]

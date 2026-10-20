@@ -1,0 +1,7 @@
+flowchart TB
+    P["orders · partition 0"]
+    P --> L["Broker 1: Leader"]
+    P --> F1["Broker 2: Follower"]
+    P --> F2["Broker 3: Follower"]
+    L -->|"replicate records"| F1
+    L -->|"replicate records"| F2

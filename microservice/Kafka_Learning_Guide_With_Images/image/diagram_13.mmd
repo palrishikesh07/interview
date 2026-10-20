@@ -1,0 +1,6 @@
+flowchart LR
+    I["Consume input topic"] --> X["Transform"]
+    X --> T["Kafka transaction"]
+    T --> O["Write output records"]
+    T --> C["Commit consumed offsets"]
+    O --> R["Committed atomically with offsets"]

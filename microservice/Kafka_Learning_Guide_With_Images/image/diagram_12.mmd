@@ -1,0 +1,8 @@
+flowchart TD
+    E["Read event"] --> P["Process event"]
+    P -->|Success| C["Commit progress"]
+    P -->|Temporary failure| R["Retry with bounded backoff"]
+    R -->|Success| C
+    R -->|Retry limit reached| D["DLQ / quarantine topic"]
+    P -->|Permanent invalid data| D
+    D --> A["Alert + inspect + repair/replay"]

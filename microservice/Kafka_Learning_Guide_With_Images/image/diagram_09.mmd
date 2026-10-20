@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant C as Consumer
+    participant DB as Database
+    participant K as Kafka offset store
+    C->>DB: Update order
+    DB-->>C: Update succeeds
+    Note over C: Process crashes here
+    C->>K: Commit offset (never happens)
+    Note over C,K: Record can be delivered again

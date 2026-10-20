@@ -1,0 +1,8 @@
+sequenceDiagram
+    participant App as Producer App
+    participant Meta as Kafka Metadata
+    participant Broker as Partition Leader
+    App->>Meta: Ask where the topic partitions are
+    Meta-->>App: Partition and leader information
+    App->>Broker: Send records
+    Broker-->>App: Acknowledge according to configuration

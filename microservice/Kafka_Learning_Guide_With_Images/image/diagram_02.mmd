@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Without["Without Kafka: direct calls"]
+      O1["Order Service"] --> P["Payment"]
+      O1 --> I["Inventory"]
+      O1 --> E["Email"]
+      O1 --> A["Analytics"]
+    end
+    subgraph With["With Kafka: event-driven"]
+      O2["Order Service"] --> T[("Kafka topic: orders")]
+      T --> P2["Payment Consumer"]
+      T --> I2["Inventory Consumer"]
+      T --> E2["Email Consumer"]
+      T --> A2["Analytics Consumer"]
+    end

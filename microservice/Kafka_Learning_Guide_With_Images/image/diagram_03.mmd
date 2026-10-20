@@ -1,0 +1,20 @@
+flowchart TB
+    P1["Producer: Order API"] --> B1
+    P2["Producer: Shipment API"] --> B2
+    subgraph K["Kafka Cluster"]
+      B1["Broker 1"]
+      B2["Broker 2"]
+      B3["Broker 3"]
+      T1[["orders topic · partition 0"]]
+      T2[["orders topic · partition 1"]]
+      T3[["orders topic · partition 2"]]
+      B1 --- T1
+      B2 --- T2
+      B3 --- T3
+    end
+    T1 --> C1["Consumer group: billing"]
+    T2 --> C1
+    T3 --> C1
+    T1 --> C2["Consumer group: analytics"]
+    T2 --> C2
+    T3 --> C2

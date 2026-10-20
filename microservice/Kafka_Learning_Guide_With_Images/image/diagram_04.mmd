@@ -1,0 +1,12 @@
+flowchart TB
+    T["Topic: orders"]
+    T --> P0["Partition 0"]
+    T --> P1["Partition 1"]
+    T --> P2["Partition 2"]
+    P0 --> R00["offset 0: order A"]
+    P0 --> R01["offset 1: order D"]
+    P0 --> R02["offset 2: order G"]
+    P1 --> R10["offset 0: order B"]
+    P1 --> R11["offset 1: order E"]
+    P2 --> R20["offset 0: order C"]
+    P2 --> R21["offset 1: order F"]
