@@ -40,7 +40,7 @@ import StartStopTimerWithState from "./components/interviewQuestion/StartStopTim
 function App() {
   return (
     <>
-      {/* <Autofill /> */}
+      <Autofill />
       {/* <Rating /> */}
       {/* <OTP /> */}
       {/* <ModalBody /> */}
@@ -78,7 +78,7 @@ function App() {
       {/* <ParentLifeCycle/> */}
       {/* <RefFoucs/> */}
       {/* <StartStopTimer/> */}
-      <StartStopTimerWithState/>
+      {/* <StartStopTimerWithState/> */}
     </>
   );
 }

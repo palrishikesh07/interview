@@ -15,7 +15,7 @@ const Autofill = () => {
   const [inputValue, setInputValue] = React.useState("");
   const [sugestions, setSugestions] = useState();
 
-  const debounce = (fn, delay = 100) => {
+  const debounce = (fn, delay = 1000) => {
     let timer;
     return (...args) => {
       console.log("Debounced function called with args 1 :", args);
@@ -52,7 +52,7 @@ const Autofill = () => {
       {inputValue && (
         <select>
           {sugestions.map((dropDownValue) => (
-            <option>{dropDownValue}</option>
+            <option key={dropDownValue}>{dropDownValue}</option>
           ))}
         </select>
       )}

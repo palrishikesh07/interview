@@ -1,41 +1,43 @@
+
 import React, { useEffect, useState } from 'react'
 
 const StartStopTimerWithState = () => {
-    const [count, setCount] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
+
+    const [counter, setCounter] = useState(0);
+    const [isStarted,setIstStarted]=useState(false);
 
 
     useEffect(()=>{
-        if(isRunning){
-            
+        if(isStarted){
             const id = setInterval(() => {
-                   setCount((prev)=>prev+1); 
+                setCounter((prev)=>prev+1);
             }, 1000);
-
 
             return ()=>{
                 clearInterval(id);
             }
         }
 
-    },[isRunning])
+    },[isStarted])
 
-
-    const handleStop=()=>{
-        setIsRunning(false);
-        setCount(0);
+    const startHandler=()=>{
+        setIstStarted(true);
+    }
+    const stopHandler=()=>{
+        setIstStarted(false);
+    }
+    const resetHandler=()=>{
+        setCounter(0);
+        setIstStarted(false)
     }
 
     return (
         <div>
-            <h2>StartStopTimerWithState</h2>
-            <p>Count: {count}</p>
-            <button onClick={()=>setIsRunning(true)}>Start</button>
-            <button onClick={()=>setIsRunning(false)}>Stop</button>
-            <button onClick={handleStop}>ReSet</button>
+            <p>{ counter}</p>
+            <button onClick={startHandler}>Start</button><br /><br />
+            <button onClick={stopHandler}>Stop</button><br /><br />
+            <button onClick={resetHandler}>Reset</button><br /><br />
         </div>
-
-
     )
 }
 

@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+
+
+import React, { useState } from 'react'
+
 const Rating = () => {
-  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const ratingContainer = new Array(5).fill(0);
-  console.log("rating is ", rating);
-  console.log("hover is ", hover);
+  const [rating, setRating] = useState(0);
 
+  const ratingContainer  = new Array(5).fill(0);
   return (
-    <div className="container">
-      {ratingContainer.map((_, index) => (
-        <span
-          className={
-            index < hover || (index < rating && hover == 0)
-              ? "color"
-              : "unColor"
-          }
-          onClick={() => setRating(index + 1)}
-          onMouseEnter={() => setHover(index + 1)}
-          onMouseLeave={() => setHover(0)}
-          key={index}
-        >
-          &#9733; // this is the unicode for star symbol
-        </span>
-      ))}
+    <div className='container'>
+      {
+       ratingContainer.map((rates,index)=>(
+        <span 
+        className={
+          index < hover || index < rating && hover==0 ? "color":"uncolor"
+        }
+        onMouseEnter={()=>setHover(index+1)}
+        onClick={()=>setRating(index+1)}
+        onMouseLeave={()=>setHover(0)}
+        key={index}>&#9733;</span>
+       ))
+      }
     </div>
-  );
-};
+  )
+}
 
-export default Rating;
+export default Rating
