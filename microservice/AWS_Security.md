@@ -507,7 +507,7 @@ The OWASP Top 10 is an awareness document for major web application
 security risks. The exact categories and wording can change between
 editions; use the current edition when preparing for a specific
 interview. Common themes include:
-
+```js
   -----------------------------------------------------------------------
   Risk theme                          Practical mitigation
   ----------------------------------- -----------------------------------
@@ -547,7 +547,7 @@ interview. Common themes include:
                                       stack traces, credentials, or
                                       internal details
   -----------------------------------------------------------------------
-
+```
 Treat this as a practical checklist, not a claim that every label
 exactly matches every OWASP edition.
 
